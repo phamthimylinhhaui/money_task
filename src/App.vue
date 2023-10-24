@@ -1,12 +1,15 @@
 <template>
+  <base-nav />
   <router-view />
 </template>
 
 <script>
-
+import Nav from "@/components/Nav.vue";
 export default {
   name: 'App',
-  components: {}
+  components: {
+    BaseNav: Nav,
+  }
 }
 </script>
 
