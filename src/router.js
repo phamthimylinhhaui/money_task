@@ -6,14 +6,17 @@ import TransactionDetail from "@/pages/transaction-detail.vue";
 const routes = [
     {
       path: "/",
+      name: "home",
       component: Home,
     },
     {
         path: "/transaction",
+        name: "transaction",
         component: Transaction,
     },
     {
         path: "/transaction/:id",
+        name: "transaction-detail",
         component: TransactionDetail,
     },
     {

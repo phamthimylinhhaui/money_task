@@ -6,7 +6,11 @@
         v-for="transaction in transactions" :key="transaction.id"
     >
       <div class="card-header">
-        <router-link :to="`/transaction/${transaction.id}`">{{ transaction.name }}</router-link>
+        <router-link
+            :to="{ name: 'transaction-detail', params: {id: transaction.id } }"
+        >
+          {{ transaction.name }}
+        </router-link>
       </div>
       <div class="card-body">
         {{ transaction.id }} - {{ transaction.name }}
