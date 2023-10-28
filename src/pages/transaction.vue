@@ -1,6 +1,6 @@
 <template>
   <h1>transaction is here...</h1>
-  <div class="row pt-3">
+  <div class="row pt-3" v-if="transactions.length">
     <div
         class="card col-3 m-3"
         v-for="transaction in transactions" :key="transaction.id"
@@ -20,30 +20,20 @@
       </div>
     </div>
   </div>
+  <div v-else></div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      transactions: [
-        {
-          id: 1,
-          name: "traction 1 dien nuoc",
-          price: 1200,
-        },
-        {
-          id: 2,
-          name: "traction 2 nha",
-          price: 5200,
-        },
-        {
-          id: 3,
-          name: "traction 3 dat",
-          price: 7000,
-        },
-      ],
+      transactions: [],
     }
+  },
+  created() {
+    fetch("http://localhost:3000/transactions")
+        .then(res => res.json())
+        .then(data => this.transactions = data);
   },
 }
 </script>
