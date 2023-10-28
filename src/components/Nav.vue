@@ -1,6 +1,6 @@
 <template>
   <nav class="nav">
-    <router-link to="/">Over view</router-link>
-    <router-link to="/transaction">Transaction</router-link>
+    <router-link to="/" class="nav-link">Over view</router-link>
+    <router-link to="/transaction" class="nav-link">Transaction</router-link>
   </nav>
 </template>
