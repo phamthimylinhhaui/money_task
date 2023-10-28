@@ -16,6 +16,10 @@ const routes = [
         path: "/transaction/:id",
         component: TransactionDetail,
     },
+    {
+        path: "/ts",
+        redirect: '/transaction',
+    },
 ];
 
 const router = createRouter({

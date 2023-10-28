@@ -1,8 +1,8 @@
 <template>
   <h1>transaction is here...</h1>
-  <div class="d-flex justify-content-around pt-3">
+  <div class="row pt-3">
     <div
-        class="card"
+        class="card col-3 m-3"
         v-for="transaction in transactions" :key="transaction.id"
     >
       <div class="card-header">
