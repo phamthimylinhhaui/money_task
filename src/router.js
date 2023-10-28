@@ -18,7 +18,11 @@ const routes = [
     },
     {
         path: "/ts",
-        redirect: '/transaction',
+        redirect: "/transaction",
+    },
+    {
+        path: "/:pathMatch(.*)*",
+        component: Home,
     },
 ];
 
