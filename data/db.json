@@ -1,0 +1,19 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "name": "traction 1 dien nuoc",
+      "price": 1200
+    },
+    {
+      "id": 2,
+      "name": "traction 2 nha",
+      "price": 5200
+    },
+    {
+      "id": 3,
+      "name": "traction 3 dat",
+      "price": 7000
+    }
+  ]
+}

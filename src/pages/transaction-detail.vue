@@ -1,12 +1,38 @@
 <template>
   <h1>transaction detail</h1>
-  <h1>{{ $route }}</h1>
+<!--  <h1>{{ $route }}</h1>-->
   <h1>{{ $route.params.id }}</h1>
+
+  <div class="card mt-3"
+       v-if="transaction"
+  >
+    <div class="card-header">
+      <h3>{{ transaction.name }}</h3>
+    </div>
+    <div class="card-body">
+      {{ transaction.id }} - {{ transaction.name }}
+    </div>
+    <div class="card-footer">
+      price: {{ transaction.price }}
+    </div>
+  </div>
+  <div v-else> Loading transaction {{ $route.params.id }} ...</div>
 </template>
 
 <script>
-
-const check = { "fullPath": "/transaction/1", "path": "/transaction/1", "query": {}, "hash": "", "params": { "id": "1" }, "matched": [ { "path": "/transaction/:id", "meta": {}, "props": { "default": false }, "children": [], "instances": { "default": {} }, "leaveGuards": { "Set(0)": [] }, "updateGuards": { "Set(0)": [] }, "enterCallbacks": {}, "components": { "default": { "__file": "src/pages/transaction-detail.vue", "__hmrId": "b289d0b8" } } } ], "meta": {}, "href": "#/transaction/1" }
-
-console.log(check)
+export default {
+  data() {
+    return {
+      transaction: null
+    };
+  },
+  created() {
+    fetch("http://localhost:3000/transactions/" + this.$route.params.id)
+        .then(res => res.json())
+        .then(data => this.transaction = data)
+        .then(() => {
+          console.log(this.transaction)
+        });
+  }
+}
 </script>
