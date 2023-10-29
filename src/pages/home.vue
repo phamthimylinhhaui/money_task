@@ -17,12 +17,30 @@
       <button @click="onChangeInfo">click me</button>
     </div>
   </div>
+  <div class="card">
+    <div class="card-header">
+      <input type="text" v-model="keyword" />
+      <p>
+        <ul>
+          <li v-for="(customer, key) in customersFilter" :key="key">{{ customer }}</li>
+        </ul>
+      </p>
+    </div>
+  </div>
 </template>
 
 <script>
-import { ref, reactive } from "vue";
+import { ref, reactive, computed } from "vue";
 export default {
   setup() {
+    const keyword = ref("");
+    const customers = reactive(["linH", "lan", "checK", "fill"]);
+    const customersFilter = computed(() =>
+        customers
+            .map(customer => customer.toLowerCase())
+            .filter(customer => customer.includes(keyword.value))
+    );
+
     const firstName = ref("linh");
     const info = reactive({
       name: "linh",
@@ -58,7 +76,7 @@ export default {
       console.log(b);
     }
 
-    return { firstName, onChangeInfo, info, a, b };
+    return { firstName, onChangeInfo, info, a, b, keyword, customersFilter, customers };
   },
 }
 </script>
