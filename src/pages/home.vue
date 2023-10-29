@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, watch, watchEffect } from "vue";
 export default {
   setup() {
     const keyword = ref("");
@@ -40,6 +40,17 @@ export default {
             .map(customer => customer.toLowerCase())
             .filter(customer => customer.includes(keyword.value))
     );
+
+    watch(keyword, (value, oldValue) => {
+      console.log("new value: ", value);
+      console.log("old value: ", oldValue);
+    });
+
+    watchEffect(() => {
+      if (keyword.value) {
+        console.log("runing when keyword change")
+      }
+    })
 
     const firstName = ref("linh");
     const info = reactive({
