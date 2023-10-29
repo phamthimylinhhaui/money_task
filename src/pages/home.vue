@@ -1,3 +1,64 @@
 <template>
   <h1>homepage is here</h1>
+  <div class="card m-3">
+    <h2 class="card-header">information</h2>
+    <div class="card-body">
+      <h4>{{ firstName }}</h4>
+      <div class="d-flex justify-content-between">
+        <p>name: {{ info.name }}</p>
+        <p>age: {{ info.age }}</p>
+      </div>
+      <div>
+        <p>ref: {{ a }}</p>
+        <p>reactive: {{ b }}</p>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button @click="onChangeInfo">click me</button>
+    </div>
+  </div>
 </template>
+
+<script>
+import { ref, reactive } from "vue";
+export default {
+  setup() {
+    const firstName = ref("linh");
+    const info = reactive({
+      name: "linh",
+      age: 12,
+    })
+
+    const a = ref({
+      name: 'mes',
+      type: 'car'
+    });
+    let b = reactive({
+      name: 'mes',
+      type: 'car'
+    });
+
+    function onChangeInfo() {
+      firstName.value = "pham";
+      info.name = "change name";
+      info.age = 24;
+
+      a.value = {
+        name: 'change a mes',
+        type: 'change a car'
+      };
+      b = {
+        name: 'change b mes',
+        type: 'change b car'
+      };
+
+      console.log(firstName);
+      console.log(info);
+      console.log(a);
+      console.log(b);
+    }
+
+    return { firstName, onChangeInfo, info, a, b };
+  },
+}
+</script>
