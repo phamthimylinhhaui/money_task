@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import useTransactions from "@/uses/fetchTransactions";
 
 export default {
   // data() {
@@ -49,20 +49,10 @@ export default {
   },
   // setup(props, context) {
   setup({ theme }, { emit }) {
-    const transactions = ref([]);
-    const error = ref(null);
     console.log(theme);
     console.log(emit);
 
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/transaction")
-        if (!response.ok) throw new Error("Something went wrong.");
-        transactions.value = await response.json();
-      } catch (e) {
-        error.value = e;
-      }
-    };
+    const { transactions, error, fetchData } = useTransactions();
     fetchData();
 
     return { transactions, error };

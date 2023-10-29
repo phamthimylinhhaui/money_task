@@ -27,10 +27,12 @@
       </p>
     </div>
   </div>
+  <div>{{ transactions }}</div>
 </template>
 
 <script>
 import { ref, reactive, computed, watch, watchEffect } from "vue";
+import useTransactions from "@/uses/fetchTransactions";
 export default {
   setup() {
     const keyword = ref("");
@@ -87,7 +89,10 @@ export default {
       console.log(b);
     }
 
-    return { firstName, onChangeInfo, info, a, b, keyword, customersFilter, customers };
+    const { transactions, fetchData } = useTransactions();
+    fetchData();
+
+    return { transactions, firstName, onChangeInfo, info, a, b, keyword, customersFilter, customers };
   },
 }
 </script>
