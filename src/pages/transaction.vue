@@ -20,20 +20,53 @@
       </div>
     </div>
   </div>
+  <div class="text-danger" v-else-if="error">
+    {{ error.message }}
+  </div>
   <div v-else></div>
 </template>
 
 <script>
+import { ref } from "vue";
+
 export default {
-  data() {
-    return {
-      transactions: [],
-    }
+  // data() {
+  //   return {
+  //     transactions: [],
+  //   }
+  // },
+  // created() {
+  //   fetch("http://localhost:3000/transactions")
+  //       .then(res => res.json())
+  //       .then(data => this.transactions = data);
+  // },
+  props: {
+    theme: {
+      type: String,
+      require: false,
+      default: "light"
+    },
   },
-  created() {
-    fetch("http://localhost:3000/transactions")
-        .then(res => res.json())
-        .then(data => this.transactions = data);
+  // setup(props, context) {
+  setup({ theme }, { emit }) {
+    const transactions = ref([]);
+    const error = ref(null);
+    console.log(theme);
+    console.log(emit);
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/transaction")
+        if (!response.ok) throw new Error("Something went wrong.");
+        transactions.value = await response.json();
+      } catch (e) {
+        error.value = e;
+      }
+    };
+    fetchData();
+
+    return { transactions, error };
   },
+
 }
 </script>
